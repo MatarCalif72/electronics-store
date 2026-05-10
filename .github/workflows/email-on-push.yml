@@ -1,0 +1,52 @@
+name: Email diff on push
+
+on: [push]
+
+jobs:
+  send-diff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Prepare email attachments
+        run: |
+          mkdir -p email_attachments
+
+          # Save directory tree to its own file
+          echo "REPOSITORY DIRECTORY STRUCTURE" > email_attachments/directory.txt
+          echo "==============================" >> email_attachments/directory.txt
+          echo "Changed files in this push:" >> email_attachments/directory.txt
+          git diff HEAD~1 HEAD --name-only >> email_attachments/directory.txt
+          echo "" >> email_attachments/directory.txt
+          echo "Full repo structure:" >> email_attachments/directory.txt
+          find . -not -path './.git/*' | sort >> email_attachments/directory.txt
+
+          # Save each changed file as its own .txt file
+          while IFS= read -r file; do
+            if [ -f "$file" ]; then
+              safe_name=$(echo "$file" | sed 's|/|_|g' | sed 's|^\./||')
+              cp "$file" "email_attachments/${safe_name}.txt"
+            fi
+          done < <(git diff HEAD~1 HEAD --name-only)
+
+      - name: Send email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_USER }}
+          password: ${{ secrets.EMAIL_PASS }}
+          to: opsagentsmonday@gmail.com
+          from: ${{ secrets.EMAIL_USER }}
+          subject: "[ElectroShop] Push by ${{ github.actor }}"
+          body: |
+            Branch: ${{ github.ref_name }}
+            Commit: ${{ github.sha }}
+            Message: ${{ github.event.head_commit.message }}
+
+            Attached:
+            - directory.txt — full repo structure + list of changed files
+            - One .txt file per changed file
+          attachments: email_attachments/*
