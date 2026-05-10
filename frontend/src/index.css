@@ -1,18 +1,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --primary: #6c63ff;
-  --primary-dark: #5a52d5;
-  --accent: #ff6584;
-  --bg: #0f0f1a;
-  --bg-card: #1a1a2e;
-  --bg-surface: #16213e;
-  --text: #e2e8f0;
-  --text-muted: #94a3b8;
-  --border: #2d2d4e;
-  --success: #10b981;
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --accent: #22d3ee;
+  --bg: #0a1628;
+  --bg-card: #0f2440;
+  --bg-surface: #0d1f36;
+  --text: #e0f7fa;
+  --text-muted: #7ecac8;
+  --border: #1a3a5c;
+  --success: #06b6d4;
   --radius: 12px;
-  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --shadow: 0 4px 24px rgba(0,0,0,0.5);
 }
 
 html { scroll-behavior: smooth; }
@@ -184,7 +184,7 @@ input, select {
 
 /* ── Hero ── */
 .hero {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(135deg, #0a1628 0%, #0d1f36 50%, #0a3d5c 100%);
   padding: 4rem 1.5rem;
   text-align: center;
   border-bottom: 1px solid var(--border);
@@ -194,7 +194,7 @@ input, select {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+  background: linear-gradient(135deg, #e0f7fa 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
