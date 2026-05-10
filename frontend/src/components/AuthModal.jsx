@@ -8,6 +8,8 @@ export default function AuthModal({ onClose, onAuth }) {
 
   const update = field => e => setForm(f => ({ ...f, [field]: e.target.value }));
 
+
+  //testing comment
   async function submit(e) {
     e.preventDefault();
     setError('');
