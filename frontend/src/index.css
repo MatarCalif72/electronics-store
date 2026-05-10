@@ -1,16 +1,16 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --primary: #0d9488;
-  --primary-dark: #0f766e;
-  --accent: #22d3ee;
-  --bg: #0a1628;
-  --bg-card: #0f2440;
-  --bg-surface: #0d1f36;
-  --text: #e0f7fa;
-  --text-muted: #7ecac8;
-  --border: #1a3a5c;
-  --success: #06b6d4;
+  --primary: #4a7c59;
+  --primary-dark: #3a6347;
+  --accent: #c8a96e;
+  --bg: #1a1208;
+  --bg-card: #241a0e;
+  --bg-surface: #1f1609;
+  --text: #f0e6d3;
+  --text-muted: #a08060;
+  --border: #3d2e1a;
+  --success: #5a9e6f;
   --radius: 12px;
   --shadow: 0 4px 24px rgba(0,0,0,0.5);
 }
@@ -184,7 +184,7 @@ input, select {
 
 /* ── Hero ── */
 .hero {
-  background: linear-gradient(135deg, #0a1628 0%, #0d1f36 50%, #0a3d5c 100%);
+  background: linear-gradient(135deg, #1a1208 0%, #241a0e 50%, #1a2e12 100%);
   padding: 4rem 1.5rem;
   text-align: center;
   border-bottom: 1px solid var(--border);
@@ -194,7 +194,7 @@ input, select {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #e0f7fa 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, #f0e6d3 0%, var(--accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
