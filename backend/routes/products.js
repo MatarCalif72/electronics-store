@@ -2,6 +2,12 @@ const express = require('express');
 const router = express.Router();
 const db = require('../db');
 
+// GET total product count
+router.get('/count', (req, res) => {
+  const count = db.get('products').size().value();
+  res.json({ count });
+});
+
 // GET all products with optional search and category filter
 router.get('/', (req, res) => {
   const { search, category } = req.query;
