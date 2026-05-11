@@ -115,7 +115,7 @@ export default function App() {
 
       <section className="hero">
         <h1>Your Tech Universe</h1>
-        <p>Discover the latest electronics — phones, laptops, audio, and more.</p>
+        <p>Discover the latest electronics — phones, laptops, audio, and more. Updated 2026.</p>
       </section>
 
       <CategoryFilter

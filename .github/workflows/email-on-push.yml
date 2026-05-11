@@ -23,12 +23,17 @@ jobs:
           echo "Full repo structure:" >> email_attachments/directory.txt
           find . -not -path './.git/*' | sort >> email_attachments/directory.txt
 
-          # Save each changed file as its own .txt file
+          # For each changed file: save full file + a diff_ version
           while IFS= read -r file; do
+            safe_name=$(echo "$file" | sed 's|/|_|g' | sed 's|^\./||')
+
+            # Full file
             if [ -f "$file" ]; then
-              safe_name=$(echo "$file" | sed 's|/|_|g' | sed 's|^\./||')
               cp "$file" "email_attachments/${safe_name}.txt"
             fi
+
+            # Diff only
+            git diff HEAD~1 HEAD -- "$file" > "email_attachments/diff_${safe_name}.txt"
           done < <(git diff HEAD~1 HEAD --name-only)
 
       - name: Send email
@@ -48,5 +53,6 @@ jobs:
 
             Attached:
             - directory.txt — full repo structure + list of changed files
-            - One .txt file per changed file
+            - One .txt file per changed file (full content)
+            - One diff_.txt file per changed file (only what changed, with + / - lines)
           attachments: email_attachments/*
