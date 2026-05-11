@@ -20,7 +20,7 @@ export default function Navbar({ search, onSearch, cartCount, onCartOpen, user, 
             <button className="btn btn-ghost" onClick={onAuthOpen}>Sign In</button>
           )}
 
-          <button className="btn-icon" onClick={onCartOpen} aria-label="Open cart">
+          <button className="btn-icon" onClick={onCartOpen} aria-label={cartCount > 0 ? `Open cart (${cartCount} items)` : 'Open cart'}>
             🛒
             {cartCount > 0 && <span className="badge">{cartCount > 9 ? '9+' : cartCount}</span>}
           </button>
