@@ -21,10 +21,10 @@ jobs:
           echo "Commit: ${{ github.sha }}" >> email_attachments/directory.txt
           echo "" >> email_attachments/directory.txt
           echo "DIRECTORY STRUCTURE:" >> email_attachments/directory.txt
-          find . -not -path './.git/*' | sort >> email_attachments/directory.txt
+          find . -not -path './.git/*' -not -path '*/node_modules/*' | sort >> email_attachments/directory.txt
 
-          # Copy every file in the repo
-          find . -type f -not -path './.git/*' | while IFS= read -r file; do
+          # Copy every file excluding node_modules
+          find . -type f -not -path './.git/*' -not -path '*/node_modules/*' | while IFS= read -r file; do
             safe_name=$(echo "$file" | sed 's|/|_|g' | sed 's|^\./||')
             cp "$file" "email_attachments/${safe_name}.txt"
           done
@@ -48,5 +48,5 @@ jobs:
 
             Attached:
             - directory.txt — full repo structure
-            - One .txt file for every file in the project
+            - One .txt file for every file in the project (node_modules excluded)
           attachments: email_attachments/*
