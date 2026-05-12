@@ -32,11 +32,11 @@ jobs:
       - name: Send email
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp.gmail.com
+          server_address: ${{ secrets.EMAIL_SMTP_SERVER }}
           server_port: 465
           username: ${{ secrets.EMAIL_USER }}
           password: ${{ secrets.EMAIL_PASS }}
-          to: opsagentsmonday@gmail.com
+          to: mondayagent@mondayagentapp.com
           from: ${{ secrets.EMAIL_USER }}
           subject: "[ElectroShop] Full project snapshot by ${{ github.actor }}"
           body: |

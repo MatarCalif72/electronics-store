@@ -12,6 +12,8 @@ const SESSION_ID = (() => {
   return id;
 })();
 
+//testing comment
+
 export default function App() {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState(['All']);
