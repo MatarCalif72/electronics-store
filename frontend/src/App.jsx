@@ -13,6 +13,7 @@ const SESSION_ID = (() => {
 })();
 
 //testing comment
+//2nd testing comment
 
 export default function App() {
   const [products, setProducts] = useState([]);
